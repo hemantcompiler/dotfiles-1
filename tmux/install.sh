@@ -12,11 +12,4 @@ if [ -e ~/.tmux.conf ] ; then
     done
 fi
 
-echo "Do you whish to install tmux config?"
-select yn in "Yes" "Nope"; do
-    if [ $yn = "Yes" ]; then
-        echo "Symlinking..."
-        ln tmux/tmux.conf ~/.tmux.conf
-        break
-    fi
-done
+echo "Symlinking..."
