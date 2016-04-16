@@ -13,3 +13,4 @@ if [ -e ~/.tmux.conf ] ; then
 fi
 
 echo "Symlinking..."
+ln tmux/tmux.conf ~/.tmux.conf
