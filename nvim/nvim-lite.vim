@@ -38,20 +38,20 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap { {}<Left>
-nnoremap {<CR> {<CR>}<Esc>O
-nnoremap {{ {
-nnoremap {} {}
+inoremap { {}<Left>
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {{ {
+inoremap {} {}
 
-nnoremap [ []<Left>
-nnoremap [<CR> [<CR>]<Esc>O
-nnoremap [[ [
-nnoremap [] []
+inoremap [ []<Left>
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [[ [
+inoremap [] []
 
-nnoremap ( ()<Left>
-nnoremap (<CR> (<CR>)<Esc>O
-nnoremap (( (
-nnoremap () ()
+inoremap ( ()<Left>
+inoremap (<CR> (<CR>)<Esc>O
+inoremap (( (
+inoremap () ()
 
 inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
