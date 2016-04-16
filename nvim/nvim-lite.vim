@@ -8,7 +8,7 @@ set expandtab
 set t_Co=256
 syntax on
 set background=dark
-colorscheme murphy
+colorscheme desert
 set number
 set relativenumber
 
@@ -53,5 +53,9 @@ inoremap (<CR> (<CR>)<Esc>O
 inoremap (( (
 inoremap () ()
 
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+" inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+
+set foldenable
+set foldmethod=indent
+set foldlevel=1
