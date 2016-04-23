@@ -69,7 +69,7 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="/home/omar/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-nvm use stable --silent
+( coproc nvm use stable --silent ) 2> /dev/null
 
 export VISUAL="nvim"
 export EDITOR="nvim"
@@ -111,6 +111,7 @@ alias e="elinks"
 alias exit_statuses="cat $(find /usr -name sysexits.h -print -quit) | less"
 alias zshrc="v ~/.zshrc"
 alias bsh="java bsh.Interpreter"
+alias :q="exit"
 
 # list of animals I like
 animals=(cower tux eyes default koala small moose moofasa bong vader-koala elephant)
