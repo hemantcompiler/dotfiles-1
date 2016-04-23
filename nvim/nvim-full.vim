@@ -78,7 +78,7 @@ Plug 'cohama/lexima.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 " vim-twig
-Plug 'lunaru/vim-twig'
+Plug 'beyondwords/vim-twig'
 
 " local vimrc
 Plug 'embear/vim-localvimrc'
