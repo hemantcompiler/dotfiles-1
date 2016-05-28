@@ -62,7 +62,8 @@ plugins=(git gitignore symfony2)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.node_modules/bin:$HOME/.local/bin:$(ruby -e 'print Gem.user_dir')/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 #
-export CLASSPATH="$HOME/bin/bsh-2.0b4.jar"
+# export CLASSPATH="$HOME/bin/bsh-2.0b4.jar"
+export CLASSPATH=""
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,6 +113,7 @@ alias exit_statuses="cat $(find /usr -name sysexits.h -print -quit) | less"
 alias zshrc="v ~/.zshrc"
 alias bsh="java bsh.Interpreter"
 alias :q="exit"
+alias info="info --vi-keys"
 
 # list of animals I like
 animals=(cower tux eyes default koala small moose moofasa bong vader-koala elephant)

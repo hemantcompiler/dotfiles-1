@@ -51,7 +51,7 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 " dart
 " Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 " Elm
-Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
+" Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
 
 " fuzzy path file finder
 Plug 'ctrlpvim/ctrlp.vim'
@@ -66,7 +66,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 " PHP omnicomplete & dep
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'm2mdas/phpcomplete-extended', {'for': 'php'}
+" Plug 'm2mdas/phpcomplete-extended', {'for': 'php'}
+Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
 
 " vimtex
 Plug 'lervag/vimtex'
@@ -95,41 +96,41 @@ call plug#end()
 
 " Plugin Configuration {{{
 " deoplete {{{
-let g:deoplete#enable_at_startup=1
-if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-endif
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" let g:deoplete#enable_at_startup=1
+" if !exists('g:deoplete#omni#input_patterns')
+"     let g:deoplete#omni#input_patterns = {}
+" endif
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "omnifunc
-augroup omnifuncs
-    autocmd!
-    autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
-augroup END
+" augroup omnifuncs
+"     autocmd!
+"     autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+" augroup END
 " tern
-if exists('g:plugs["tern_for_vim"]')
-    let g:tern_show_argument_hints = 'on_hold'
-    let g:tern_show_signature_in_pum = 1
-    autocmd FileType javascript setlocal omnifunc=tern#Complete
-endif
+" if exists('g:plugs["tern_for_vim"]')
+"     let g:tern_show_argument_hints = 'on_hold'
+"     let g:tern_show_signature_in_pum = 1
+"     autocmd FileType javascript setlocal omnifunc=tern#Complete
+" endif
 " deoplete tab-complete
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+" inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 " <Leader><Tab> for regular tab
-inoremap <Leader><Tab> <Space><Space>
+" inoremap <Leader><Tab> <Space><Space>
 " tern
-autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+" autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 " }}}
 
 " Neomake {{{ 
-autocmd! BufWritePost * Neomake
-let g:neomake_php_php__maker = {
-    \ 'args': ['-l'],
-    \ }
+" autocmd! BufWritePost * Neomake
+" let g:neomake_php_php__maker = {
+"     \ 'args': ['-l'],
+"     \ }
 " }}}
 
 " Ctrl-P {{{
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/node_modules/*
 " }}}
 
 " Airline {{{
@@ -147,6 +148,11 @@ let g:lexima_enable_endwise_rules=1
 call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
 call lexima#add_rule({'char': '$', 'at': '\$\%#\$', 'leave': 1, 'filetype': 'tex'})
 call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+
+call lexima#add_rule({'char': '%', 'at': '{\%#}', 'input': '%', 'input_after': '%', 'filetype': 'html.twig'})
+call lexima#add_rule({'char': '<BS>', 'at': '{%\%#%}', 'delete': 1, 'filetype': 'html.twig'})
+call lexima#add_rule({'char': '<space>', 'at': '{%\%#', 'input': ' ', 'input_after': ' ', 'filetype': 'html.twig'})
+call lexima#add_rule({'char': '<BS>', 'at': '{% \%#', 'delete': 1, 'filetype': 'html.twig'})
 " }}}
 
 " NERDTree git plugin {{{
@@ -172,6 +178,12 @@ let g:vimwiki_list = [
     \ {'path':'$HOME/Documenti/wiki'},
     \ {'path':'$HOME/Documenti/Work'}
     \ ]
+" }}}
+
+" Ultisnip {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}}
 
 " }}}
@@ -221,6 +233,11 @@ autocmd FileType php  set foldmethod=indent
 autocmd FileType ruby set foldmethod=indent
 autocmd FileType css set foldmethod=indent
 autocmd FileType sass set foldmethod=indent
+
+" fold comments
+" doesn't work... D:
+au BufNewFile,BufRead *.cpp,*.c,*.h,*.java,*.php,*.js syn region myCComment start="/\*" end="\*/" fold keepend transparent
+
 " }}}
 
 " }}}
@@ -235,6 +252,13 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+" fast command mode for italian keyboard:
+" it's like rebinding ; as : in english keyboard
+nnoremap ò :
+
+" refresh ctrlp cache
+nnoremap <F5> :CtrlPClearAllCaches<CR>
 
 " fast buffer resizing
 if bufwinnr(1)
@@ -259,11 +283,58 @@ nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap j gj
 nnoremap k gk
 
+" quick omnicomplete
+inoremap <Nul> <C-x><C-o>
+
 " }}}
 
 " Spell checking {{{
 autocmd FileType tex setlocal spell spelllang=it_IT
 autocmd FileType markdown setlocal spell spelllang=it_IT
+autocmd FileType mail setlocal spell spelllang=it_IT
 " }}}
 
-" vim:foldmethod=marker:foldlevel=10
+" Abbreviations {{{
+abbr auth Omar Polo <yum1096@gmail.com>
+" }}}
+
+" Scripts {{{
+" A list of super hyper cool scrips found online
+
+" Align regex {{{
+command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
+vnoremap <silent> <Leader>a :Align<CR>
+function! AlignSection(regex) range
+    let extra = 1
+    if empty(a:regex)
+        call inputsave()
+        let sep = input('Regex: ')
+        call inputrestore()
+    else
+        let sep = a:regex
+    endif
+    let maxpos = 0
+    let section = getline(a:firstline, a:lastline)
+    for line in section
+        let pos = match(line, ' *'.sep)
+        if maxpos < pos
+            let maxpos = pos
+        endif
+    endfor
+    call map(section, 'AlignLine(v:val, sep, maxpos, extra)')
+    call setline(a:firstline, section)
+endfunction
+
+function! AlignLine(line, sep, maxpos, extra)
+    let m = matchlist(a:line, '\(.\{-}\) \{-}\('.a:sep.'.*\)')
+    if empty(m)
+        return a:line
+    endif
+    let spaces = repeat(' ', a:maxpos - strlen(m[1]) + a:extra)
+    return m[1] . spaces . m[2]
+endfunction
+" }}}
+
+"}}}
+
+" vim:foldmethod=marker:foldlevel=0
