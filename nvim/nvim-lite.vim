@@ -27,6 +27,8 @@ set showcmd
 let mapleader=','
 let maplocalleader="\\"
 
+nnoremap ò :
+
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>th :nohl<CR>
 
