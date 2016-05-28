@@ -61,3 +61,8 @@ inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\
 set foldenable
 set foldmethod=indent
 set foldlevel=1
+
+au BufNewFile,BufRead *.tex set nocindent
+
+set lcs=eol:¬,tab:»\ ,space:·,trail:~
+set list
