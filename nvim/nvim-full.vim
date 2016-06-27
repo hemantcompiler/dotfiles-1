@@ -120,7 +120,7 @@ call plug#end()
 " autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 " }}}
 
-" Neomake {{{ 
+" Neomake {{{
 " autocmd! BufWritePost * Neomake
 " let g:neomake_php_php__maker = {
 "     \ 'args': ['-l'],
@@ -299,9 +299,18 @@ abbr auth Omar Polo <yum1096@gmail.com>
 " }}}
 
 " Scripts {{{
-" A list of super hyper cool scrips found online
+" A list of super hyper cool scrips found online, or developed by me
+
+" Remove Trailing Space {{{
+" written by me
+command! RemoveTrailingSpace call RTS()
+function! RTS()
+    execute '%s/\s\+$//'
+endfunction
+" }}}
 
 " Align regex {{{
+" Found online, but modified
 command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
 vnoremap <silent> <Leader>a :Align<CR>
 function! AlignSection(regex) range
