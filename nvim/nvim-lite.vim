@@ -110,4 +110,9 @@ set foldenable
 set foldmethod=indent
 set foldlevel=1
 
+au BufNewFile,BufRead *.tex set nocindent
+
+set lcs=eol:¬,tab:»\ ,space:·,trail:~
+set list
+
 " vim:foldmethod=marker:foldlevel=0
