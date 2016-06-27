@@ -58,7 +58,19 @@ inoremap () ()
 " inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 
+" Scripts {{{
+" A list of super hyper cool scrips found online, or developed by me
+
+" Remove Trailing Space {{{
+" written by me
+command! RemoveTrailingSpace call RTS()
+function! RTS()
+    execute '%s/\s\+$//'
+endfunction
+" }}}
+
 " Align regex {{{
+" Found online, but modified
 command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
 vnoremap <silent> <Leader>a :Align<CR>
 function! AlignSection(regex) range
@@ -90,6 +102,8 @@ function! AlignLine(line, sep, maxpos, extra)
     let spaces = repeat(' ', a:maxpos - strlen(m[1]) + a:extra)
     return m[1] . spaces . m[2]
 endfunction
+" }}}
+
 " }}}
 
 set foldenable
