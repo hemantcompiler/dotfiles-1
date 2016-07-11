@@ -12,23 +12,11 @@ if [ -e ~/.zshrc ] ; then
     done
 fi
 
-if hash curl 2> /dev/null; then
-    # download & execute oh-my-zsh installing program
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    # and then download my favourite theme
-    curl -k https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme -o ~/.oh-my-zsh/themes/honukai.zsh-theme
+git clone --recursive https://github.com/omar-polo/prezto "${ZDOTDIR:-$HOME}/.zprezto"
 
-elif hash wget 2> /dev/null; then
-    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-    wget https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme -O ~/.oh-my-zsh/themes/honukai.zsh-theme
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
 
-else
-    echo "It seems that you don't have curl or wget. I can't install oh-my-zh."
-    echo "Aborting..."
-    exit 1
-fi
-
-# remove the default .zshrc
-rm ~/.zshrc
-# link my customized zshrc
-ln zsh/zshrc ~/.zshrc
+chsh -s /bin/zsh
