@@ -1,71 +1,222 @@
-set nocompatible
+" General settings {{{
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+set nocompatible               " Be iMproved
 
-set t_Co=256
-syntax on
-set background=dark
-colorscheme desert
+filetype plugin indent on
+syntax enable
+
+set grepprg=grep\ -RHIn\ --exclude=\"tags\"\ --exclude=\".tags\"\ --exclude-dir=\".svn\"\ --exclude-dir=\".git\"
+
+set gdefault
+set hidden
+set path=.,**,/usr/include,,
+set tags=./tags;/
+set title
+set visualbell
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignore+=node_modules/*
+set wildignore+=tags
+set wildignore=*.swp,*.bak
+set wildignorecase
+set wildmode=list:full
+
+" Undo {{{
+silent !mkdir -p ~/.vim/undodir
+set undofile
+set undodir=~/.vim/undodir
+" }}}
+
+" }}}
+
+" Graphical setting {{{
 set number
 set relativenumber
-
-set cindent
-
+set showcmd
+set ruler
 set cursorline
+set scrolloff=5
+set laststatus=2
+
+colorscheme desert
 
 set wildmenu
 
-set scrolloff=3
+set conceallevel=2
+set concealcursor=niv
 
+" extra indication of where you are {{{
+augroup highlight_follows_focus
+    autocmd!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+augroup END
+" }}}
+
+" search {{{
 set incsearch
 set hlsearch
+set ignorecase
+set smartcase
+" }}}
 
-set showcmd
-let mapleader=','
-let maplocalleader="\\"
+" Statusline {{{
 
-nnoremap ò :
+function! ReadOnly()
+    if &readonly || !&modifiable
+        return ''
+    else
+        return ''
+    endif
+endfunction
+
+set laststatus=2
+set statusline=
+set statusline+=%2*\ %<%.15F%{ReadOnly()}%m\ %w\        " File+path
+set statusline+=%3*\ %y      " filetype
+" set statusline+=\ %4*%{strlen(&fenc)?&fenc:'none'} " file encoding
+set statusline+=%5*\ %{&ff}
+" set statusline+=%6*%{GitInfo()}
+set statusline+=%=      " left/right separator
+set statusline+=%8*%c:     " column
+set statusline+=%9*%l/%L " current/total lines
+set statusline+=%9*\ %P    " percentage
+" set statusline+=%9*\ %#ErrorMsg#%{neomake#statusline#QflistStatus('qf:\ ')}
+" set statusline+=\ %#ErrorMsg#%{neomake#statusline#QflistStatus('qf:\ ')}
+" set statusline+=\ %#ErrorMsg#%{StatuslineLocList()}
+
+hi User1 ctermfg=008 ctermbg=0 guifg=White      guibg=#333333
+hi User2 ctermfg=009 ctermbg=0 guifg=Violet     guibg=#333333
+hi User3 ctermfg=010 ctermbg=0 guifg=LightBlue  guibg=#333333
+hi User4 ctermfg=011 ctermbg=0 guifg=LightGreen guibg=#333333
+hi User5 ctermfg=012 ctermbg=0 guifg=White      guibg=#333333
+hi User6 ctermfg=013 ctermbg=0 guifg=LightBlue  guibg=#333333
+hi User7 ctermfg=014 ctermbg=0 guifg=Purple     guibg=#333333
+hi User8 ctermfg=005 ctermbg=0 guifg=SeaGreen   guibg=#333333
+hi User9 ctermfg=006 ctermbg=0 guifg=SeaGreen   guibg=#333333
+
+" }}}
+
+hi VertSplit ctermfg=0 ctermbg=NONE
+
+" }}}
+
+" keys {{{
+let mapleader = "\<Space>"
+let localleader = ','
 
 nnoremap <Leader>fs :w<CR>
-nnoremap <Leader>th :nohl<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>v <C-w>v
+nnoremap <Leader>s <C-w>s
+nnoremap <Leader>h :nohl<CR>
+nnoremap <Leader>e :e |" whitespace!
+nnoremap <Leader>so :so %<CR>
+nnoremap <Leader>l :ls<CR>:b<space>
 
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+
+nnoremap \| :Vexplore<CR>
+
+" who needs CtrlP?
+nnoremap <Leader>o :e **/*
+nnoremap <Leader>O :arga **/*
+nnoremap <Leader>b :b */*<C-d>
+
+" navigate through visual line
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <C-h> <C-w>h
+" AAAAAHHHHH
 nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-inoremap { {}<Left>
-inoremap {<CR> {<CR>}<Esc>O
-inoremap {{ {
-inoremap {} {}
+" Much saner (if rebinding CapsLock is not possible)
+inoremap jk <Esc>
+inoremap kj <Esc>
 
-inoremap [ []<Left>
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [[ [
-inoremap [] []
+" Git
+nnoremap <Leader>ga :!git add %<CR>
+nnoremap <Leader>gc :!git commit % -m ""<Left>
+nnoremap <Leader>gs :!git status<CR>
+nnoremap <Leader>gd :!git diff %<CR>
+nnoremap <Leader>gp :!git pull<CR>
+nnoremap <Leader>gP :!git push<CR>
 
-inoremap ( ()<Left>
-inoremap (<CR> (<CR>)<Esc>O
-inoremap (( (
-inoremap () ()
+" make arrow key sense-full again! {{{
+nnoremap <Left> :vertical resize +1<CR>
+nnoremap <Right> :vertical resize -1<CR>
+nnoremap <Up> :resize -1<CR>
+nnoremap <Down> :resize +1<CR>
+" }}}
 
-" inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+vnoremap @ :norm@
 
-" Scripts {{{
-" A list of super hyper cool scrips found online, or developed by me
+" Cool ASCII titles {{{
+function! MdMKTh1()
+    normal "gyyp
+    normal v$r=
+    +1
+endfunction
+function! MdMKTh2()
+    normal "gyyp
+    normal v$r-
+    +1
+endfunction
+nnoremap <silent> <Leader>t1 :call MdMKTh1()<CR>
+nnoremap <silent> <Leader>t2 :call MdMKTh2()<CR>
+" }}}
+
+" Commentary? {{{
+let s:comment_chars = {
+            \ 'vim': '"',
+            \ 'php': '//',
+            \ 'javascript': '//',
+            \ 'c': '//',
+            \ 'cpp': '//',
+            \ 'xdefaults': '!',
+            \ 'conf': '\#',
+            \ 'markdown': '>',
+            \ 'sh': '#',
+            \ }
+
+function! Comment(...)
+    let comment_char = s:comment_chars[&filetype]
+    silent exe "'[,']s#^#" . comment_char . ' #e'
+    nohl
+endfunction
+nmap <silent> gc :set opfunc=Comment<CR>g@
+nmap <silent> gcc gcl
+" }}}
+
+" }}}
+
+" Netrw {{{
+augroup netrw
+    autocmd!
+    autocmd FileType netrw map <buffer> q :q<CR>
+    autocmd FileType netrw map <buffer> \| :q<CR>
+    autocmd FileType netrw map <buffer> l <CR>
+augroup END
+" }}}
+
+" ~tabs~ SPACES {{{
+set tabstop=4 " a tab will be represented with 4 columns
+set softtabstop=4 " <tab> is pressed in insert mode 4 column
+set shiftwidth=4 " indentation is 4 columns
+set expandtab " replace <tab>s with spaces, ye
+" }}}
+
+" Script {{{
 
 " Remove Trailing Space {{{
+
 " written by me
 command! RemoveTrailingSpace call RTS()
 function! RTS()
-    execute '%s/\s\+$//'
+    execute '%s/\s\+$//c'
 endfunction
 " }}}
 
@@ -104,15 +255,25 @@ function! AlignLine(line, sep, maxpos, extra)
 endfunction
 " }}}
 
+"}}}
+
+" General augroup {{{
+augroup General
+    autocmd!
+    autocmd FileType help map <buffer> q :q<CR>
+
+    au FileType pug,jade,stylus,python setlocal cursorcolum
+
+    au FileType pug,jade,stylus,python setlocal cursorcolumn
+
+    au FileType text,markdown,c,cpp setlocal spell
+
+    au FileType help setlocal nospell
+augroup END
 " }}}
 
-set foldenable
-set foldmethod=indent
-set foldlevel=1
-
-au BufNewFile,BufRead *.tex set nocindent
-
-set lcs=eol:¬,tab:»\ ,space:·,trail:~
-set list
+" localization {{{
+set spelllang=it
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
