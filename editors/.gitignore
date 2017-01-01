@@ -1,3 +1,6 @@
 nvim/plugged
 nvim/undodir/*
 nvim/autoload
+nvim/.netrwhist
+
+!nvim/undodir/.gitkeep
