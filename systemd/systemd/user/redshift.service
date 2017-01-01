@@ -1,0 +1,8 @@
+[Unit]
+Description=Redshift
+
+[Service]
+ExecStart=/usr/bin/redshift -l 46.0667794:12.5877639
+
+[Install]
+WantedBy=default.target
