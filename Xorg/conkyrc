@@ -1,0 +1,39 @@
+alignment top_right
+use_xft yes
+xftfont monospace:size=9
+update_interval 1
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+double_buffer yes
+border_inner_margin 10
+border_outer_margin 0
+minimum_size 250
+maximum_width 300
+
+TEXT
+
+${font :bold:size=14} ${time %Y-%m-%d}
+${font :bold:size=26}${time %H:%M}
+$font
+${execi 600 cal}
+$hr
+${color grey}Uptime:$color $uptime
+${color grey}RAM Usage:$color $mem/$memmax - $memperc%
+${color grey}CPU Usage:$color ${cpu cpu0}%
+${cpugraph cpu0 20}
+${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+$hr
+${color grey}File systems:
+ /     $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+ /home $color${fs_used /home/}/${fs_size /home} ${fs_bar 6 /home}
+$hr
+${color grey}Networking:
+Up:$color ${upspeed wlp7s0} ${color grey} - Down:$color ${downspeed wlp7s0}
+${upspeedgraph wlp7s0 5555ff ffffff 120KiB -l}
+${downspeedgraph wlp7s0 5555ff ffffff 1200KiB -l}
+$hr
+${color grey}${alignc}$mpd_artist - $mpd_title
+${color grey}$mpd_bar
+${color grey}${alignc}$mpd_status

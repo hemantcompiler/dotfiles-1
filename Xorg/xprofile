@@ -1,0 +1,7 @@
+setxkbmap dvp-it -option
+setxkbmap dvp-it -option ctrl:swapcaps -option altwin:swap_lalt_lwin -option lv3:ralt_switch
+sleep 0.5s
+xcape -e 'Control_L=Escape'
+
+# synclient TapButton1=1
+# synclient TapButton2=3

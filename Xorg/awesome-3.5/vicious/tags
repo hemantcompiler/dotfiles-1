@@ -1,0 +1,126 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
+BB.create	contrib/buildbot.lua	/^function BB.create(url, builder)$/;"	f
+BB:_getBuildStatus	contrib/buildbot.lua	/^function BB:_getBuildStatus(result)$/;"	f
+BB:_queryBuildbot	contrib/buildbot.lua	/^function BB:_queryBuildbot(build_number)$/;"	f
+BB:getBuilder	contrib/buildbot.lua	/^function BB:getBuilder()$/;"	f
+BB:getCurrent	contrib/buildbot.lua	/^function BB:getCurrent()$/;"	f
+BB:getCurrentStatus	contrib/buildbot.lua	/^function BB:getCurrentStatus()$/;"	f
+BB:getError	contrib/buildbot.lua	/^function BB:getError()$/;"	f
+BB:getLastSuccessful	contrib/buildbot.lua	/^function BB:getLastSuccessful()$/;"	f
+BB:refresh	contrib/buildbot.lua	/^function BB:refresh()$/;"	f
+datasplit	contrib/sensors.lua	/^local function datasplit(str)$/;"	f
+elseif type(reg.format) 	init.lua	/^        elseif type(reg.format) == "function" then$/;"	f
+escape	contrib/pulse.lua	/^local function escape(text)$/;"	f
+getBuilderStatus	contrib/buildbot.lua	/^local function getBuilderStatus(b)$/;"	f
+get_sink_name	contrib/pulse.lua	/^local function get_sink_name(sink)$/;"	f
+helpers.capitalize	helpers.lua	/^function helpers.capitalize(text)$/;"	f
+helpers.escape	helpers.lua	/^function helpers.escape(text)$/;"	f
+helpers.format	helpers.lua	/^function helpers.format(format, args)$/;"	f
+helpers.pathtotable	helpers.lua	/^function helpers.pathtotable(dir)$/;"	f
+helpers.scroll	helpers.lua	/^function helpers.scroll(text, maxlen, widget)$/;"	f
+helpers.shellquote	helpers.lua	/^function helpers.shellquote(s)$/;"	f
+helpers.truncate	helpers.lua	/^function helpers.truncate(text, maxlen)$/;"	f
+helpers.uformat	helpers.lua	/^function helpers.uformat(array, key, value, unit)$/;"	f
+helpers.wrequire	helpers.lua	/^function helpers.wrequire(table, key)$/;"	f
+if #bb 	contrib/buildbot.lua	/^    if #bb == 0 then    --fill up bb with builders when worker function is run for the first time$/;"	f
+local sock_avail, socket 	contrib/pop.lua	/^local sock_avail, socket = pcall(function()$/;"	f
+pacmd	contrib/pulse.lua	/^local function pacmd(args)$/;"	f
+pulse.add	contrib/pulse.lua	/^function pulse.add(percent, sink)$/;"	f
+pulse.toggle	contrib/pulse.lua	/^function pulse.toggle(sink)$/;"	f
+reg.update 	init.lua	/^    reg.update = function ()$/;"	f
+regregister	init.lua	/^local function regregister(reg)$/;"	f
+return setmetatable(ati, { __call 	contrib/ati.lua	/^return setmetatable(ati, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(bat, { __call 	widgets/bat.lua	/^return setmetatable(bat, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(batacpi, { __call 	contrib/batacpi.lua	/^return setmetatable(batacpi, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(batpmu, { __call 	contrib/batpmu.lua	/^return setmetatable(batpmu, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(batproc, { __call 	contrib/batproc.lua	/^return setmetatable(batproc, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(cpu, { __call 	widgets/cpu.lua	/^return setmetatable(cpu, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(cpufreq, { __call 	widgets/cpufreq.lua	/^return setmetatable(cpufreq, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(cpuinf, { __call 	widgets/cpuinf.lua	/^return setmetatable(cpuinf, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(date, { __call 	widgets/date.lua	/^return setmetatable(date, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(dio, { __call 	contrib/dio.lua	/^return setmetatable(dio, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(dio, { __call 	widgets/dio.lua	/^return setmetatable(dio, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(fs, { __call 	widgets/fs.lua	/^return setmetatable(fs, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(gmail, { __call 	widgets/gmail.lua	/^return setmetatable(gmail, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(hddtemp, { __call 	widgets/hddtemp.lua	/^return setmetatable(hddtemp, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(mbox, { __call 	widgets/mbox.lua	/^return setmetatable(mbox, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(mboxc, { __call 	widgets/mboxc.lua	/^return setmetatable(mboxc, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(mdir, { __call 	widgets/mdir.lua	/^return setmetatable(mdir, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(mem, { __call 	widgets/mem.lua	/^return setmetatable(mem, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(mpc, { __call 	contrib/mpc.lua	/^return setmetatable(mpc, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(mpd, { __call 	widgets/mpd.lua	/^return setmetatable(mpd, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(net, { __call 	contrib/net.lua	/^return setmetatable(net, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(net, { __call 	widgets/net.lua	/^return setmetatable(net, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(netcfg, { __call 	contrib/netcfg.lua	/^return setmetatable(netcfg, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(nvsmi, { __call 	contrib/nvsmi.lua	/^return setmetatable(nvsmi, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(openweather, { __call 	contrib/openweather.lua	/^return setmetatable(openweather, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(org, { __call 	widgets/org.lua	/^return setmetatable(org, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(os, { __call 	widgets/os.lua	/^return setmetatable(os, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(ossvol, { __call 	contrib/ossvol.lua	/^return setmetatable(ossvol, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(pkg, { __call 	widgets/pkg.lua	/^return setmetatable(pkg, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(pop, { __call 	contrib/pop.lua	/^return setmetatable(pop, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(pulse, { __call 	contrib/pulse.lua	/^return setmetatable(pulse, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(raid, { __call 	widgets/raid.lua	/^return setmetatable(raid, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(rss, { __call 	contrib/rss.lua	/^return setmetatable(rss, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(sensors, { __call 	contrib/sensors.lua	/^return setmetatable(sensors, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(thermal, { __call 	widgets/thermal.lua	/^return setmetatable(thermal, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(uptime, { __call 	widgets/uptime.lua	/^return setmetatable(uptime, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(volume, { __call 	widgets/volume.lua	/^return setmetatable(volume, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(weather, { __call 	widgets/weather.lua	/^return setmetatable(weather, { __call = function(_, ...) return worker(...) end })$/;"	f
+return setmetatable(wifi, { __call 	widgets/wifi.lua	/^return setmetatable(wifi, { __call = function(_, ...) return worker(...) end })$/;"	f
+setmetatable(_M, { __call 	contrib/buildbot.lua	/^setmetatable(_M, { __call = function(_, ...) return worker(...) end })$/;"	f
+setmetatable(_M, { __call 	widgets/cmus.lua	/^setmetatable(_M, { __call = function(_, ...) return worker(...) end })$/;"	f
+update	init.lua	/^local function update(widget, reg, disablecache)$/;"	f
+vicious.activate	init.lua	/^function vicious.activate(widget)$/;"	f
+vicious.cache	init.lua	/^function vicious.cache(wtype)$/;"	f
+vicious.force	init.lua	/^function vicious.force(wtable)$/;"	f
+vicious.register	init.lua	/^function vicious.register(widget, wtype, format, timer, warg)$/;"	f
+vicious.suspend	init.lua	/^function vicious.suspend()$/;"	f
+vicious.unregister	init.lua	/^function vicious.unregister(widget, keep, reg)$/;"	f
+worker	contrib/ati.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/batacpi.lua	/^local function worker(format)$/;"	f
+worker	contrib/batpmu.lua	/^local function worker(format, batid)$/;"	f
+worker	contrib/batproc.lua	/^local function worker(format, batid)$/;"	f
+worker	contrib/buildbot.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/dio.lua	/^local function worker(format, disk)$/;"	f
+worker	contrib/mpc.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/net.lua	/^local function worker(format, tignorelist)$/;"	f
+worker	contrib/netcfg.lua	/^local function worker(format)$/;"	f
+worker	contrib/nvsmi.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/openweather.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/ossvol.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/pop.lua	/^local function worker(format, warg)$/;"	f
+worker	contrib/pulse.lua	/^local function worker(format, sink)$/;"	f
+worker	contrib/rss.lua	/^local function worker(format, input)$/;"	f
+worker	contrib/sensors.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/bat.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/cmus.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/cpu.lua	/^local function worker(format)$/;"	f
+worker	widgets/cpufreq.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/cpuinf.lua	/^local function worker(format)$/;"	f
+worker	widgets/date.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/dio.lua	/^local function worker(format)$/;"	f
+worker	widgets/fs.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/gmail.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/hddtemp.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/mbox.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/mboxc.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/mdir.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/mem.lua	/^local function worker(format)$/;"	f
+worker	widgets/mpd.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/net.lua	/^local function worker(format)$/;"	f
+worker	widgets/org.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/os.lua	/^local function worker(format)$/;"	f
+worker	widgets/pkg.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/raid.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/thermal.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/uptime.lua	/^local function worker(format)$/;"	f
+worker	widgets/volume.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/weather.lua	/^local function worker(format, warg)$/;"	f
+worker	widgets/wifi.lua	/^local function worker(format, warg)$/;"	f
+{ __index 	helpers.lua	/^        { __index = function(table, index)$/;"	f

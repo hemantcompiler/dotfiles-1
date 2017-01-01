@@ -1,0 +1,2 @@
+ - config is the i3-gaps configuration file
+ - i3blocks is the i3blocks configuration file
