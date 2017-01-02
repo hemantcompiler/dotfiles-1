@@ -130,7 +130,7 @@ set $tag6 "6: game"
 set $tag7 "7: writing"
 set $tag8 "8: 42"
 set $tag9 "9: music"
-set $tag10 "10: video"
+set $tag10 "10: agenda"
 
 # switch to workspace
 bindcode $mod+10 workspace $tag1
@@ -236,7 +236,7 @@ bindsym XF86AudioPlay exec --no-startup-id "mpc toggle"
 
 # Assign Everything
 
-assign [instance="wyrd"] $tag1
+assign [instance="calcurse"] $tag10
 
 assign [class="Opera"] $tag2
 assign [class="Firefox"] $tag2
@@ -261,4 +261,4 @@ for_window [class="(?i)conky"] floating enable border none
 # launch things
 exec --no-startup-id "conky -b -c ~/.conkyrc"
 exec --no-startup-id "st -n toxic -T toxic -e toxic"
-exec --no-startup-id "st -n wyrd -T wyrd -e wyrd"
+exec --no-startup-id "st -n calcurse -T calcurse -e calcurse"
