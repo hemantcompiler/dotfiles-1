@@ -1,0 +1,24 @@
+#!/bin/sh
+
+cd ~/build
+
+for i in $(ls -d */); do
+    cd $i
+
+    printf "\n\n"
+    printf '\e[1;34m%-6s\e[m' "Updating \"${i%%/}\""
+    printf "\n\n"
+
+#    git remote update >> /dev/null
+#    git merge origin/master >> /dev/null
+    git pull --dry-run | grep -q -v 'Already up-to-date.' && changed=1
+
+    # si: create a new package
+    #  f: owerwrite existing package
+    $changed && makepkg -sif
+
+    cd ..
+done
+
+# clean orpan packages
+sudo pacman -R $(pacman -Qdtq)

@@ -1,0 +1,1 @@
+sudo mount saiman:/ /mnt && rsync -r -v /mnt/ ~/shared
