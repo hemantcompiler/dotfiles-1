@@ -1,0 +1,50 @@
+# GIT
+alias gst="git status"
+alias gwc="git whatchanged"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gpoat=""
+
+# SYMFONY
+alias sf="php bin/console"
+
+# SSH
+alias archie="ssh archie@192.168.1.53"
+
+# MISC
+alias tnsh='tmux new -s $(pwd | sed "s/\/.*\///g" | sed "s/\n//g")'
+
+alias l="ls -l"
+alias ll="ls -lah"
+
+alias v="nvim"
+alias vv="vim" # will be improved
+alias vimrc="vim ~/.vimrc"
+alias nvimrc="v ~/.config/nvim/init.vim"
+
+alias zshrc="v ~/.zshrc"
+
+alias xup="xrdb ~/.Xresources"
+
+alias :q="exit"
+alias :e="v"
+
+alias composer="php ~/bin/composer.phar"
+
+alias _="sudo"
+
+alias grep="grep --color=always"
+
+alias ed="ed -p:"
+alias info="info --vi-keys"
+
+alias post_json="curl -H \"Content-Type: application/json\" -X POST -d"
+
+alias ssh_fix="(ssh-agent zsh ; ssh-add)"
+alias sx="startx"
+alias setx="setxkbmap"
+
+# hide from history
+alias pwsafe=" pwsafe"
+alias cd=" cd"
+alias ls=" ls"

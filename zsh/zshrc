@@ -1,0 +1,45 @@
+HISTFILE=~/.histfile
+HISTSIZE=2000
+SAVEHIST=2000
+setopt appendhistory autocd nomatch notify SHARE_HISTORY extendedglob
+setopt hist_ignore_all_dups histignorespace
+unsetopt beep
+bindkey -v
+
+zstyle :compinstall filename '/home/omar/.zshrc'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+
+# Prompt
+autoload -Uz promptinit
+promptinit
+# prompt bart
+
+source ~/.zplugrc
+
+autoload -Uz compinit
+compinit
+
+# search
+bindkey -M vicmd '/' history-incremental-pattern-search-backward
+bindkey -M vicmd '?' history-incremental-pattern-search-forward
+
+# <s-tab>
+bindkey '^[[Z' reverse-menu-complete
+
+# Alias
+source ~/.alias
+
+# Path
+# see ~/.zshenv
+
+## startup shit
+
+#  neofetch
+
+# nvm
+nvm_load() {
+    [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+    source /usr/share/nvm/nvm.sh
+    source /usr/share/nvm/install-nvm-exec
+}

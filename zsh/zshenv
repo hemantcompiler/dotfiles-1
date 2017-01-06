@@ -1,0 +1,18 @@
+typeset -U path
+
+path=(
+#      ~/.composer/vendor/bin/
+#      ~/node_modules/.bin/
+    ~/.local/bin/
+    $(ruby -e 'print Gem.user_dir')/bin
+    $path[@]
+    )
+
+# VARS
+export VISUAL="vim"
+export EDITOR="vim"
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export MANPAGER="nvim -c 'set ft=man' -"
+export PAGER="/usr/bin/less"
+export LESS="-iMr"
+
