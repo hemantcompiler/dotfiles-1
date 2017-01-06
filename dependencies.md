@@ -1,3 +1,9 @@
+System:
+
+ - git
+ - systemd
+ - zsh
+
 Font:
 
 - ttf-overpass
@@ -15,3 +21,4 @@ Apps:
  - i3 gaps
  - i3 blocks
  - neofetch
+ - compton
