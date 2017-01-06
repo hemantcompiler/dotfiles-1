@@ -449,6 +449,9 @@ augroup my-vimrc
     " quick quit
     au FileType help map <buffer> q :q<CR>
 
+    au FileType help,man map <buffer> j <C-e>
+    au FileType help,man map <buffer> k <C-y>
+
     " css different omnicompletion method
     au FileType css    setlocal completeopt=longest,menu
     au FileType stylus setlocal completeopt=longest,menu
