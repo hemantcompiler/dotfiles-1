@@ -256,10 +256,15 @@ assign [instance="ranger"] $tag5
 for_window [class="Spotify"] move to workspace $tag9 # this do
 
 assign [instance="ncmpcpp"] $tag9
+for_window [instance="ncmpcpp"] fullscreen enable
+
+assign [instance="calcurse"] $tag10
+for_window [instance="calcurse"] fullscreen enable
 
 for_window [class="(?i)conky"] floating enable border none
 
 # launch things
-exec --no-startup-id "conky -b -c ~/.conkyrc"
+exec --no-startup-id "conky -b -c ~/.conkyrc > /tmp/conkylog-omar"
 exec --no-startup-id "st -n toxic -T toxic -e toxic"
 exec --no-startup-id "st -n calcurse -T calcurse -e calcurse"
+exec --no-startup-id "st -n ncmpcpp -T ncmpcpp -e ncmpcpp"
