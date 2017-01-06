@@ -1,6 +1,6 @@
 alignment top_right
 use_xft yes
-xftfont monospace:size=9
+xftfont Overpass:size=10
 update_interval 1
 total_run_times 0
 own_window yes
@@ -9,15 +9,15 @@ own_window_transparent yes
 double_buffer yes
 border_inner_margin 10
 border_outer_margin 0
-minimum_size 250
-maximum_width 300
+minimum_size 300
+maximum_width 400
 
 TEXT
 
 ${font :bold:size=14} ${time %Y-%m-%d}
 ${font :bold:size=26}${time %H:%M}
+${font Overpass Mono:size=10}${execi 600 cal}
 $font
-${execi 600 cal}
 $hr
 ${color grey}Uptime:$color $uptime
 ${color grey}RAM Usage:$color $mem/$memmax - $memperc%
@@ -26,8 +26,9 @@ ${cpugraph cpu0 20}
 ${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
 $hr
 ${color grey}File systems:
- /     $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
- /home $color${fs_used /home/}/${fs_size /home} ${fs_bar 6 /home}
+${font Overpass Mono:size=10} /     ${fs_bar 6 /}
+${font Overpass Mono:size=10} /home ${fs_bar 6 /home}
+$font
 $hr
 ${color grey}Networking:
 Up:$color ${upspeed wlp7s0} ${color grey} - Down:$color ${downspeed wlp7s0}
