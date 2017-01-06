@@ -1,6 +1,8 @@
 #!/bin/bash
 
-ln -sv `pwd`/nvim/ ~/.config/nvim
+ln -sv `pwd`/vimrc ~/.vimrc
+
+ln -sv `pwd`/nvim ~/.config/nvim
 
 printf "Installing vim-plug...\n"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \

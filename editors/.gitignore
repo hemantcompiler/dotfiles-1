@@ -4,3 +4,4 @@ nvim/autoload
 nvim/.netrwhist
 
 !nvim/undodir/.gitkeep
+nvim/nvim
