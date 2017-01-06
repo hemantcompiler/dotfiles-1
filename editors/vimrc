@@ -1,0 +1,304 @@
+" General settings {{{
+
+set nocompatible               " Be iMproved
+
+filetype plugin indent on
+syntax enable
+
+set grepprg=grep\ -RHIn\ --exclude-dir=\"vendor\"\ --exclude-dir=\"node_modules\"\ --exclude=\"tags\"\ --exclude=\".tags\"\ --exclude-dir=\".svn\"\ --exclude-dir=\".git\"\ -i
+
+set gdefault
+set hidden
+set path=.,**,/usr/include,,
+set tags=./tags;/
+set title
+set visualbell
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*,*/node_modules/*,*/vendor/*
+set wildignore+=tags
+set wildignore+=*.swp,*.bak
+set wildignorecase
+set wildmenu
+set wildmode=full
+
+" Undo {{{
+silent !mkdir -p ~/.vim/undodir
+set undofile
+set undodir=~/.vim/undodir
+" }}}
+
+" }}}
+
+" Graphical setting {{{
+set number
+set relativenumber
+set showcmd
+set ruler
+set cursorline
+set scrolloff=5
+set laststatus=2
+
+colorscheme desert
+
+set conceallevel=2
+
+" extra indication of where you are {{{
+augroup highlight_follows_focus
+    autocmd!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+augroup END
+" }}}
+
+" search {{{
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+" }}}
+
+" Statusline {{{
+
+function! ReadOnly()
+    if &readonly || !&modifiable
+        return ''
+    else
+        return ''
+    endif
+endfunction
+
+set laststatus=2
+set statusline=
+set statusline+=%2*\ %<%.15F%{ReadOnly()}%m\ %w\        " File+path
+set statusline+=%3*\ %y      " filetype
+" set statusline+=\ %4*%{strlen(&fenc)?&fenc:'none'} " file encoding
+set statusline+=%5*\ %{&ff}
+" set statusline+=%6*%{GitInfo()}
+set statusline+=%=      " left/right separator
+set statusline+=%8*%c:     " column
+set statusline+=%9*%l/%L " current/total lines
+set statusline+=%9*\ %P    " percentage
+" set statusline+=%9*\ %#ErrorMsg#%{neomake#statusline#QflistStatus('qf:\ ')}
+" set statusline+=\ %#ErrorMsg#%{neomake#statusline#QflistStatus('qf:\ ')}
+" set statusline+=\ %#ErrorMsg#%{StatuslineLocList()}
+
+hi User1 ctermfg=008 ctermbg=0 guifg=White      guibg=#333333
+hi User2 ctermfg=009 ctermbg=0 guifg=Violet     guibg=#333333
+hi User3 ctermfg=010 ctermbg=0 guifg=LightBlue  guibg=#333333
+hi User4 ctermfg=011 ctermbg=0 guifg=LightGreen guibg=#333333
+hi User5 ctermfg=012 ctermbg=0 guifg=White      guibg=#333333
+hi User6 ctermfg=013 ctermbg=0 guifg=LightBlue  guibg=#333333
+hi User7 ctermfg=014 ctermbg=0 guifg=Purple     guibg=#333333
+hi User8 ctermfg=005 ctermbg=0 guifg=SeaGreen   guibg=#333333
+hi User9 ctermfg=006 ctermbg=0 guifg=SeaGreen   guibg=#333333
+
+" }}}
+
+hi VertSplit ctermfg=0 ctermbg=NONE
+
+" }}}
+
+" keys {{{
+let mapleader = "\<Space>"
+let localleader = ','
+
+nnoremap <Leader>fs :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>v <C-w>v
+nnoremap <Leader>s <C-w>s
+nnoremap <Leader>h :nohl<CR>
+nnoremap <Leader>e :e |" whitespace!
+nnoremap <Leader>so :so %<CR>
+nnoremap <Leader>l :ls<CR>:b<space>
+
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+
+nnoremap \| :Vexplore<CR>
+
+" who needs CtrlP?
+nnoremap <Leader>o :e **/*
+nnoremap <Leader>O :arga **/*
+nnoremap <Leader>b :b */*<C-d>
+
+" navigate through visual line
+nnoremap j gj
+nnoremap k gk
+
+" AAAAAHHHHH
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Much saner (if rebinding CapsLock is not possible)
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" Git
+nnoremap <Leader>ga :!git add %<CR>
+nnoremap <Leader>gc :!git commit % -m ""<Left>
+nnoremap <Leader>gs :!git status<CR>
+nnoremap <Leader>gd :!git diff %<CR>
+nnoremap <Leader>gp :!git pull<CR>
+nnoremap <Leader>gP :!git push<CR>
+
+" make arrow key sense-full again! {{{
+nnoremap <Left> :vertical resize +1<CR>
+nnoremap <Right> :vertical resize -1<CR>
+nnoremap <Up> :resize -1<CR>
+nnoremap <Down> :resize +1<CR>
+" }}}
+
+vnoremap @ :norm@
+
+" Cool ASCII titles {{{
+function! MdMKTh1()
+    normal "gyyp
+    normal v$r=
+    +1
+endfunction
+function! MdMKTh2()
+    normal "gyyp
+    normal v$r-
+    +1
+endfunction
+nnoremap <silent> <Leader>t1 :call MdMKTh1()<CR>
+nnoremap <silent> <Leader>t2 :call MdMKTh2()<CR>
+" }}}
+
+" Commentary? {{{
+
+let s:comment_chars = {
+            \ 'vim': '"',
+            \ 'php': '//',
+            \ 'javascript': '//',
+            \ 'c': '//',
+            \ 'cpp': '//',
+            \ 'java': '//',
+            \ 'lisp': ';;',
+            \ 'clojure': ';;',
+            \ 'clojurescript': ';;',
+            \ 'xdefaults': '!',
+            \ 'conf': '\#',
+            \ 'markdown': '>',
+            \ 'sh': '\#',
+            \ 'bash': '\#',
+            \ 'zsh': '\#',
+            \ 'haskell': '--',
+            \ 'lua': '--',
+            \ 'sql': '--',
+            \ }
+
+function! Comment(...)
+    let comment_char = s:comment_chars[&filetype]
+    let comment_len = strlen(comment_char) + 1
+    silent exe "'[,']norm i". comment_char . " "
+endfunction
+
+function! Uncomment(...)
+    let comment_char = s:comment_chars[&filetype]
+    let comment_len = strlen(comment_char) + 1
+    silent exe "'[,']norm ^". repeat('x', comment_len)
+endfunction
+
+function! AppendComment(...)
+    let comment_char = s:comment_chars[&filetype]
+    let culen = strlen(getline('.'))
+    silent exe "norm A". (culen == 0 ? '' : ' ') . comment_char . " "
+    startinsert!
+endfunction
+
+nmap <silent> gc :set opfunc=Comment<CR>g@
+nmap <silent> gu :set opfunc=Uncomment<CR>g@
+nmap <silent> gcc gcl
+nmap <silent> guu gul
+nmap <silent> ga :call AppendComment()<CR>
+
+" }}}
+
+" }}}
+
+" Netrw {{{
+augroup netrw
+    autocmd!
+    autocmd FileType netrw map <buffer> q :q<CR>
+    autocmd FileType netrw map <buffer> \| :q<CR>
+    autocmd FileType netrw map <buffer> l <CR>
+augroup END
+" }}}
+
+" ~tabs~ SPACES {{{
+set tabstop=4 " a tab will be represented with 4 columns
+set softtabstop=4 " <tab> is pressed in insert mode 4 column
+set shiftwidth=4 " indentation is 4 columns
+set expandtab " replace <tab>s with spaces, ye
+" }}}
+
+" Script {{{
+
+" Remove Trailing Space {{{
+
+" written by me
+command! RemoveTrailingSpace call RTS()
+function! RTS()
+    execute '%s/\s\+$//c'
+endfunction
+" }}}
+
+" Align regex {{{
+" Found online, but modified
+command! -nargs=? -range Align <line1>,<line2>call AlignSection('<args>')
+vnoremap <silent> <Leader>a :Align<CR>
+function! AlignSection(regex) range
+    let extra = 1
+    if empty(a:regex)
+        call inputsave()
+        let sep = input('Regex: ')
+        call inputrestore()
+    else
+        let sep = a:regex
+    endif
+    let maxpos = 0
+    let section = getline(a:firstline, a:lastline)
+    for line in section
+        let pos = match(line, ' *'.sep)
+        if maxpos < pos
+            let maxpos = pos
+        endif
+    endfor
+    call map(section, 'AlignLine(v:val, sep, maxpos, extra)')
+    call setline(a:firstline, section)
+endfunction
+
+function! AlignLine(line, sep, maxpos, extra)
+    let m = matchlist(a:line, '\(.\{-}\) \{-}\('.a:sep.'.*\)')
+    if empty(m)
+        return a:line
+    endif
+    let spaces = repeat(' ', a:maxpos - strlen(m[1]) + a:extra)
+    return m[1] . spaces . m[2]
+endfunction
+" }}}
+
+"}}}
+
+" General augroup {{{
+augroup General
+    autocmd!
+    autocmd FileType help map <buffer> q :q<CR>
+
+    au FileType pug,jade,stylus,python setlocal cursorcolum
+
+    au FileType pug,jade,stylus,python setlocal cursorcolumn
+
+    au FileType text,markdown,c,cpp setlocal spell
+
+    au FileType help setlocal nospell
+augroup END
+" }}}
+
+" localization {{{
+set spelllang=it
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
