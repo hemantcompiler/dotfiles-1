@@ -14,8 +14,8 @@ maximum_width 400
 
 TEXT
 
-${font :bold:size=14} ${time %Y-%m-%d}
-${font :bold:size=26}${time %H:%M}
+${font Overpass:bold:size=14}${time %Y-%m-%d}
+${font Overpass:bold:size=26}${time %H:%M}
 ${font Overpass Mono:size=10}${execi 600 cal}
 $font
 $hr
