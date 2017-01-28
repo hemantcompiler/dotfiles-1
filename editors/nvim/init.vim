@@ -11,6 +11,9 @@ Plug 'flazz/vim-colorschemes'
 Plug 'a-watson/vim-gdscript'
 " Plug 'tpope/vim-commentary'
 
+Plug 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'cohama/lexima.vim'
@@ -33,7 +36,6 @@ Plug 'mkusher/padawan.vim'
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'othree/csscomplete.vim', { 'for': ['css', 'stylus', 'sass'] }
 Plug 'sheerun/vim-polyglot'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-fugitive'
@@ -42,6 +44,7 @@ Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'wellle/targets.vim'
+Plug 'wikitopian/hardmode'
 
 " Plug 'scwood/vim-hybrid'
 " Plug 'morhetz/gruvbox'
@@ -58,7 +61,7 @@ call plug#end()
 " Key {{{
 
 let mapleader="\<Space>"
-let maplocalleader="ò"
+let maplocalleader="-"
 
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>so :so %<CR>
@@ -80,7 +83,7 @@ nnoremap <Localleader>mc :make clean<CR>
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-" make arrow key sense-full again! {{{
+" make arrow key great again! {{{
 nnoremap <silent> <Left> :vertical resize +1<CR>
 nnoremap <silent> <Right> :vertical resize -1<CR>
 nnoremap <silent> <Up> :resize -1<CR>
@@ -109,6 +112,9 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+" quickly create a tag
+nnoremap <Leader>tag bi<<esc>ea><esc>yi<o</<c-r>"><esc>O
+
 nnoremap <Leader>z zA
 
 nnoremap j gj
@@ -119,6 +125,7 @@ vnoremap @ :norm@
 
 " quick omnicomplete (C-space)
 inoremap <Nul> <C-x><C-o>
+inoremap <C-Space> <C-x><C-o>
 
 " tab
 nnoremap <C-n> :tabnew<CR>
@@ -249,7 +256,7 @@ augroup END
 augroup JS
     autocmd!
     autocmd FileType javascript setlocal foldmethod=syntax
-    autocmd FileType javascript setlocal foldlevel=1
+    autocmd FileType javascript setlocal foldlevel=10
 augroup END
 
 let g:javascript_plugin_jsdoc = 1
@@ -270,6 +277,9 @@ let g:javascript_conceal_arrow_function = "⇒"
 
 " php omnicompletion server
 let g:padawan#composer_command = "php ~/bin/composer.phar"
+
+" hardmode
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " undo tree {{{
 
@@ -339,7 +349,7 @@ augroup END
 " Search {{{
 
 set incsearch
-set hlsearch
+set nohlsearch
 set ignorecase
 set smartcase
 
@@ -459,7 +469,7 @@ augroup my-vimrc
     au FileType markdown,tex setlocal spell
 
     au FileType php setlocal foldmethod=indent
-    au FileType php setlocal foldlevel=1
+"     au FileType php setlocal foldlevel=1
 
     " sometimes the cursorcolumn is useful
     " au BufNewFile,BufRead FileType * setlocal nocursorcolumn
