@@ -7,44 +7,45 @@ set runtimepath+=~/Develop/vim-plugins/vim-sc/
 
 call plug#begin()
 
-Plug 'flazz/vim-colorschemes'
-Plug 'a-watson/vim-gdscript'
-" Plug 'tpope/vim-commentary'
-
-Plug 'racer-rust/vim-racer'
-Plug 'rust-lang/rust.vim'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"
+" Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
+" Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' } | Plug 'Shougo/vimproc.vim', {'do' : 'make' }
+" Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp'] }
+" Plug 'lumiliet/vim-twig', { 'for': 'twig' }
+" Plug 'majutsushi/tagbar'
+" Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
+" Plug 'mkusher/padawan.vim'
+" Plug 'racer-rust/vim-racer'
+" Plug 'rust-lang/rust.vim'
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'cohama/lexima.vim'
-Plug 'digitaltoad/vim-pug', { 'for': ['pug'] }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' } | Plug 'Shougo/vimproc.vim', {'do' : 'make' }
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
-Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme', 'lisp'] }
+Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', {'do': './install --bin'}
 Plug 'jwalton512/vim-blade', { 'for': 'blade' }
 Plug 'laurentb/vim-cute-php', { 'for': 'php' }
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'lumiliet/vim-twig', { 'for': 'twig' }
-Plug 'majutsushi/tagbar'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'twig', 'blade'] }
+Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
-Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
-Plug 'mkusher/padawan.vim'
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'othree/csscomplete.vim', { 'for': ['css', 'stylus', 'sass'] }
+Plug 'posva/vim-vue'
 Plug 'sheerun/vim-polyglot'
+Plug 'Shougo/unite.vim' | Plug 'Shougo/vimproc', {'do': 'make -f make_unix.mak'} | Plug 'm2mdas/phpcomplete-extended' | Plug 'm2mdas/phpcomplete-extended-laravel' 
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+" Plug 'w0rp/ale'
+" Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'wellle/targets.vim'
-Plug 'wikitopian/hardmode'
+Plug 'neomake/neomake'
 
 " Plug 'scwood/vim-hybrid'
 " Plug 'morhetz/gruvbox'
@@ -75,6 +76,10 @@ nnoremap <Leader>l :ls<CR>:b<space>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>M :make<Space>
 nnoremap <Leader>c :make %:r<CR> " compile
+
+" why do I ever need `h` and `l`?
+nnoremap h :clast<CR>
+nnoremap l :cnext<CR>
 
 nnoremap <Localleader>mt :make tags<CR>
 nnoremap <Localleader>mc :make clean<CR>
@@ -116,9 +121,6 @@ vmap <Leader>P "+P
 nnoremap <Leader>tag bi<<esc>ea><esc>yi<o</<c-r>"><esc>O
 
 nnoremap <Leader>z zA
-
-nnoremap j gj
-nnoremap k gk
 
 " apply a macro in visual mode
 vnoremap @ :norm@
@@ -208,6 +210,14 @@ set expandtab " replace <tab>s with spaces, ye
 
 " Plugins + config! {{{
 
+" emmet {{{
+let g:user_emmet_leader_key = '<c-y>'
+autocmd FileType html,css,jsx,blade,twig EmmetInstall
+" }}}
+
+" gutentags
+let g:gutentags_ctags_executable_php = "phpctags"
+
 " tmux navigator
 let g:tmux_navigator_save_on_switch=2
 
@@ -275,11 +285,10 @@ let g:javascript_conceal_arrow_function = "⇒"
 
 " }}}
 
-" php omnicompletion server
-let g:padawan#composer_command = "php ~/bin/composer.phar"
-
-" hardmode
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" phpcomplete-extended {{{
+au FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+let g:phpcomplete_index_composer_command = "composer"
+" }}}
 
 " undo tree {{{
 
@@ -290,16 +299,19 @@ nnoremap <Leader>U :UndotreeFocus<CR>
 
 " Linters ~neomake~ ALE {{{
 
-" autocmd! BufWritePost,BufRead * Neomake
+autocmd! BufWritePost,BufRead * Neomake
 
-let g:ale_linters = {
-            \ 'javascript': ['eslint'],
-            \ }
+" let g:ale_linters = {
+"             \ 'javascript': ['eslint'],
+"             \ }
 
-let g:ale_sign_column_always = 1
-let g:ale_statusline_format  = ['✗ %d', '⚠ %d', '✓ ok']
-let g:ale_sign_error         = '··'
-let g:ale_sign_warning       = '· '
+" let g:ale_sign_column_always   = 1
+" let g:ale_statusline_format    = ['✗ %d', '⚠ %d', '✓ ok']
+" let g:ale_sign_error           = '··'
+" let g:ale_sign_warning         = '· '
+" let g:ale_echo_msg_error_str   = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format      = '[%linter%] %s [%severity%]'
 
 " }}}
 
@@ -307,20 +319,20 @@ let g:ale_sign_warning       = '· '
 nnoremap <Leader>o :FZF -m<CR>
 
 " tagbar
-nnoremap <Leader>t :TagbarToggle<CR>
+" nnoremap <Leader>t :TagbarToggle<CR>
 
 " Haskell {{{
 
 " neco ghc
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-let g:haskell_enable_quantification   = 1 " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo      = 1 " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax      = 1 " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles        = 1 " to enable highlighting of type roles
-let g:haskell_enable_static_pointers  = 1 " to enable highlighting of `static`
+" let g:haskellmode_completion_ghc = 0
+" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"
+" let g:haskell_enable_quantification   = 1 " to enable highlighting of `forall`
+" let g:haskell_enable_recursivedo      = 1 " to enable highlighting of `mdo` and `rec`
+" let g:haskell_enable_arrowsyntax      = 1 " to enable highlighting of `proc`
+" let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+" let g:haskell_enable_typeroles        = 1 " to enable highlighting of type roles
+" let g:haskell_enable_static_pointers  = 1 " to enable highlighting of `static`
 
 " }}}
 
@@ -423,7 +435,7 @@ set statusline+=%=                                " left/right separator
 set statusline+=%8*%c:                            " column
 set statusline+=%l/%L                             " current/total lines
 set statusline+=\ %P                              " percentage
-set statusline+=\ %{ALEGetStatusLine()}
+" set statusline+=\ %{ALEGetStatusLine()}
 
 hi User1 ctermfg=008 ctermbg=0 guifg=White      guibg=#333333
 hi User2 ctermfg=009 ctermbg=8 guifg=Violet     guibg=#333333
@@ -459,8 +471,8 @@ augroup my-vimrc
     " quick quit
     au FileType help map <buffer> q :q<CR>
 
-    au FileType help,man map <buffer> j <C-e>
-    au FileType help,man map <buffer> k <C-y>
+    au FileType help,man nnoremap <buffer> j <C-e>
+    au FileType help,man nnoremap <buffer> k <C-y>
 
     " css different omnicompletion method
     au FileType css    setlocal completeopt=longest,menu
@@ -469,6 +481,7 @@ augroup my-vimrc
     au FileType markdown,tex setlocal spell
 
     au FileType php setlocal foldmethod=indent
+    au FileType php set foldlevel=3
 "     au FileType php setlocal foldlevel=1
 
     " sometimes the cursorcolumn is useful

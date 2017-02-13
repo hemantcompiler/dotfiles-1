@@ -1,6 +1,8 @@
 typeset -U path
 
 path=(
+    ~/.node_modules/bin
+    ~/.config/composer/vendor/bin
     ~/.local/bin/
     $(ruby -e 'print Gem.user_dir')/bin
     $path[@]
@@ -9,8 +11,8 @@ path=(
 source ~/.cargo/env
 
 # VARS
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="kak"
+export EDITOR="kak"
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export MANPAGER="nvim -c 'set ft=man' -"
 export PAGER="/usr/bin/less"

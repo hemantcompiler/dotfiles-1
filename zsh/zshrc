@@ -40,6 +40,7 @@ source ~/.alias
 # nvm
 nvm_load() {
     [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-    source /usr/share/nvm/nvm.sh
-    source /usr/share/nvm/install-nvm-exec
+    source /usr/share/nvm/nvm.sh >> /dev/null
+    nvm use --delete-prefix v7.3.0 --silent
+    source /usr/share/nvm/install-nvm-exec >> /dev/null
 }

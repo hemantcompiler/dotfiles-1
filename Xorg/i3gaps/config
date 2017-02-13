@@ -63,7 +63,8 @@ bindsym $mod+shift+s exec --no-startup-id rofi -show ssh
 
 smart_gaps on
 smart_borders on
-gaps inner 10
+gaps inner 5
+gaps outer 3
 #  gaps outer 10
 new_window 1pixel
 
@@ -225,7 +226,7 @@ bar {
 }
 
 # my bindings
-bindsym $mod+shift+x exec i3lock
+bindsym $mod+shift+x exec zsh -c 'lock'
 # bindsym $mod+shift+x exec sh /home/omar/bin/lock
 
 # Pulse Audio controls
@@ -249,7 +250,8 @@ assign [class="Firefox"] $tag2
 assign [class="Icecat"] $tag2
 assign [class="Iceweasel"] $tag2
 assign [class="google-chrome"] $tag2
-assign [class="iridium-browser"] $tag2
+assign [class="Iridium-browser"] $tag2
+# for_window [class="iridium-browser"] move to $tag2
 
 assign [instance="toxic" class="toxic"] $tag3
 
@@ -271,7 +273,8 @@ for_window [instance="calcurse" class="calcurse"] fullscreen enable
 for_window [class="(?i)conky"] floating enable border none
 
 # launch things
-exec --no-startup-id "conky -b -c ~/.conkyrc > /tmp/conkylog-omar"
+exec --no-startup-id "conky -b -c ~/.conky/conkyrc > /tmp/conkylog-omar"
+exec --no-startup-id "conky -b -c ~/.conky/conky_mpd > /tmp/conkylog-omar"
 exec --no-startup-id "termite -t toxic --class=toxic --name=toxic -e toxic"
 exec --no-startup-id "termite -t calcurse --class=calcurse --name=calcurse -e calcurse"
 exec --no-startup-id "termite -t ncmpcpp --class=ncmpcpp --name=ncmpcpp -e ncmpcpp"

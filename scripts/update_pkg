@@ -11,11 +11,10 @@ for i in $(ls -d */); do
 
 #    git remote update >> /dev/null
 #    git merge origin/master >> /dev/null
-    git pull --dry-run | grep -q -v 'Already up-to-date.' && changed=1
-
     # si: create a new package
     #  f: owerwrite existing package
-    $changed && makepkg -sif
+#     git pull --dry-run | grep -q -v 'Already up-to-date.' && makepkg -sif
+    makepkg -scif
 
     cd ..
 done

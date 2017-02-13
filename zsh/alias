@@ -25,11 +25,10 @@ alias nvimrc="v ~/.config/nvim/init.vim"
 alias zshrc="v ~/.zshrc"
 
 alias xup="xrdb ~/.Xresources"
+# alias shot=" scrot \'%Y-%m-%d_$wx$h.png\' -e \'mv $f /tmp\' "
 
 alias :q="exit"
 alias :e="v"
-
-alias composer="php ~/bin/composer.phar"
 
 alias _="sudo"
 
