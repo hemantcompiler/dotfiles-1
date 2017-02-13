@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# start some nice programs
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+sh ~/.xprofile
+
+xrdb ~/.xresources
+
+compton --config ~/.config/compton.conf -b &
+
+nm-applet &
+
+systemctl --user start redshift.service
+
+feh --bg-fill ~/Immagini/HLD_Screenshot_01_camp_1080.png
+
+greenclip daemon &
+
+# (sleep 5; conky -b -c ~/.conkyrc) &
+
+owncloud &
+
+# exec awesome
+exec i3
+# twm &
+# xclock -geometry 50x50-1+1 &
+# xterm -geometry 80x50+494+51 &
+# xterm -geometry 80x20+494-0 &
+# exec xterm -geometry 80x66+0+0 -name login
