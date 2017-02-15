@@ -14,7 +14,7 @@ but for now, to me, it's okay
 configuration for my editors: 
 
  - vimrc is 100% standalone vim configuration
- - nvim: is the home for my neovim configg
+ - nvim: is the home for my neovim config
  - [kakouine](https://github.com/mawww/kakoune) config is coming! 
 
 ### scripts
@@ -27,7 +27,7 @@ some unit files
 
 ### various stuff
 
-miscellaneous (tmux & htop)
+miscellaneous: tmux & htop at the time of writing
 
 ### Xorg
 
@@ -52,4 +52,5 @@ check [the dependencies list](dependencies.md)
 - kakoune config (I'm still working heavely on it)
 - termite config
 - dunst config
+- add some screenshots
 
