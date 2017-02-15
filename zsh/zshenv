@@ -17,4 +17,5 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export MANPAGER="nvim -c 'set ft=man' -"
 export PAGER="/usr/bin/less"
 export LESS="-iMr"
+export BROWSER="w3m"
 
