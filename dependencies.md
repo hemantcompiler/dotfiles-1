@@ -16,9 +16,15 @@ Apps:
  - mdp
  - ncmpcpp
  - conky
- - st
+ - termite
  - zsh
  - i3 gaps
  - i3 blocks
- - neofetch
  - compton
+ - par
+ - tmux
+
+
+Play nicely with:
+
+ - neofetch
