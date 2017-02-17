@@ -1,16 +1,18 @@
-System:
+# Dependencies
+
+## System:
 
  - git
  - systemd
  - zsh
 
-Font:
+## Font:
 
 - ttf-overpass
-- tff-dejavu
+- ttf-dejavu
 
 
-Apps:
+## Apps:
 
  - rager
  - mdp
@@ -23,8 +25,11 @@ Apps:
  - compton
  - par
  - tmux
+ - rofi
 
 
-Play nicely with:
+## Play nicely with:
 
  - neofetch
+ - aspell (en + it)
+ - st
