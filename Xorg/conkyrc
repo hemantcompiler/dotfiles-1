@@ -31,7 +31,7 @@ ${font Overpass Mono:size=10} /home ${fs_bar 6 /home}
 ${font Overpass:size=11}
 $hr
 ${color grey}Networking:
-Up:$color ${upspeed enp2s0} ${color grey} - Down:$color ${downspeed enp2s0}
-${upspeedgraph enp2s0 5555ff ffffff 120KiB -l}
-${downspeedgraph enp2s0 5555ff ffffff 1200KiB -l}
+Up:$color ${upspeed wlp7s0} ${color grey} - Down:$color ${downspeed wlp7s0}
+${upspeedgraph wlp7s0 5555ff ffffff 120KiB -l}
+${downspeedgraph wlp7s0 5555ff ffffff 1200KiB -l}
 ]]
