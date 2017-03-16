@@ -1,15 +1,5 @@
 typeset -U path
 
-path=(
-    ~/.node_modules/bin
-    ~/.config/composer/vendor/bin
-    ~/.local/bin/
-    $(ruby -e 'print Gem.user_dir')/bin
-    $path[@]
-    )
-
-source ~/.cargo/env
-
 # VARS
 export VISUAL="kak"
 export EDITOR="kak"
@@ -18,4 +8,17 @@ export MANPAGER="nvim -c 'set ft=man' -"
 export PAGER="/usr/bin/less"
 export LESS="-iMr"
 export BROWSER="w3m"
+export GOPATH=~/go
+
+
+path=(
+    ~/.node_modules/bin
+    ~/.config/composer/vendor/bin
+    ~/.local/bin/
+    $(ruby -e 'print Gem.user_dir')/bin
+    $GOPATH/bin
+    $path[@]
+    )
+
+source ~/.cargo/env
 
