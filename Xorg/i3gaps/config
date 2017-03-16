@@ -37,7 +37,7 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id termite
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+shift+c kill
 
 # thunar
 bindsym $mod+f exec --no-startup-id "termite -t ranger --class=ranger --name=ranger -e ranger"

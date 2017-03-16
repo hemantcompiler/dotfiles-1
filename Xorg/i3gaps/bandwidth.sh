@@ -8,6 +8,12 @@ if [ "$1" != "rx" -a "$1" != "tx" ]; then
     exit 1
 fi
 
+if [ "$1" = "rx"]; then
+    icon= 
+else
+    icon=
+fi
+
 FILE=/tmp/i3blocks_bandwidth_$TYPE
 touch $FILE
 
@@ -26,6 +32,7 @@ for IFACE in $(ls -1 $NETDIR); do
 done
 
 delta=$(expr $CUR - $PREV)
-echo $(expr $delta / 1000) kB/s
+printf %10s "$icon $(expr $delta / 1000) kB/s"
+#echo $(expr $delta / 1000) kB/s
 
 echo $CUR > $FILE
