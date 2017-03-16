@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ln -sv `pwd`/inputrc ~/.inputrc
+
 ln -sv `pwd`/vimrc ~/.vimrc
 
 ln -sv `pwd`/nvim ~/.config/nvim
