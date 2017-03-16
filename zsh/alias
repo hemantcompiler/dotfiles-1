@@ -22,6 +22,10 @@ alias vv="vim" # will be improved
 alias vimrc="vim ~/.vimrc"
 alias nvimrc="v ~/.config/nvim/init.vim"
 
+alias f='$EDITOR $(fzf)'
+alias vf='v $(fzf)'
+alias fv='vf'
+
 alias zshrc="v ~/.zshrc"
 
 alias xup="xrdb ~/.Xresources"
