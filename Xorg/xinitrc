@@ -49,7 +49,7 @@ if [ "$wm" = "xmonad" ]; then
     termite -t weechat --class=weechat --name=weechat -e weechat &
     termite -t ranger --class=ranger --name=ranger -e ranger &
 
-    exec ~/.local/bin/myXmonad-exe
+    exec ~/.local/bin/xmonad
 else
     exec i3
 fi
