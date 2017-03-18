@@ -15,7 +15,7 @@ configuration for my editors:
 
  - vimrc is 100% standalone vim configuration
  - nvim: is the home for my neovim config
- - [kakouine](https://github.com/mawww/kakoune) config is coming! 
+ - [kakouine](https://github.com/mawww/kakoune)
 
 ### scripts
 
@@ -33,7 +33,8 @@ miscellaneous: tmux & htop at the time of writing
 
 grafical stuff, in short:
 
-- awesome3.5
+- ~awesome3.5~
+- xmonad (+ polybar)
 - i3gaps config (+ i3blocks config & related script)
 - redshift config
 - .x(initrc|profile|resources)
@@ -49,8 +50,6 @@ check [the dependencies list](dependencies.md)
 
 # TODO:
 
-- kakoune config (I'm still working heavely on it)
 - termite config
-- dunst config
 - add some screenshots
 
