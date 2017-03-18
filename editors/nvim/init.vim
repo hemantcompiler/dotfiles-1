@@ -208,6 +208,13 @@ Plug 'posva/vim-vue'
 Plug 'mattn/emmet-vim'
 
 
+" UndoTree {{{
+Plug 'mbbill/undotree'
+nnoremap <Leader>u :UndotreeToggle<CR>
+nnoremap <Leader>U :UndotreeFocus<CR>
+" }}}
+
+
 " Airline {{{
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
