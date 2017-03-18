@@ -14,3 +14,4 @@ ln -sv `pwd`/redshift.conf ~/.config/redshift.conf
 ln -sv `pwd`/xmonad ~/.xmonad
 ln -sv `pwd`/polybar ~/.config/polybar
 ln -sv `pwd`/dunst/ ~/.config/dunst
+ln -sv `pwd`/termite/ ~/.config/termite
