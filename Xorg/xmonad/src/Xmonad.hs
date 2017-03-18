@@ -61,10 +61,6 @@ projects =
               , projectDirectory = "~"
               , projectStartHook = Just $ do spawnOn myws6 "termite -t ncmpcpp --class=ncmpcpp --name ncmpcpp -e ncmpcpp"
               }
-    , Project { projectName = "bankless reborn"
-              , projectDirectory = "~/workspace/webcorporate/bankless-reborn/"
-              , projectStartHook = Just $ do spawnOn dyws3 "termite"
-              }
     ]
 
 ------------------------------------------------------------------------
