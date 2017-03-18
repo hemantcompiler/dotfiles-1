@@ -2,6 +2,8 @@
 
 ln -sv `pwd`/inputrc ~/.inputrc
 
+ln -sv `pwd`/kak ~/.config/kak
+
 ln -sv `pwd`/vimrc ~/.vimrc
 
 ln -sv `pwd`/nvim ~/.config/nvim
