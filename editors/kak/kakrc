@@ -1,0 +1,147 @@
+# Load other file 
+# ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+source ~/.config/kak/plug/gdt.kak
+#source ~/.config/kak/plug/kak-ycmd/ycmd.kak
+source ~/.config/kak/plug/snips.kak
+source ~/.config/kak/plug/csscompl.kak
+source ~/.config/kak/plug/blade.kak
+source ~/.config/kak/plug/tmux-conf.kak
+
+
+# General config
+# ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+set global grepcmd 'ag --column'
+#set global ycmd_path /home/omar/Develop/ycmd/ycmd/
+set global indentwidth 4
+set global tabstop 4
+set global ui_options ncurses_status_on_top=true
+
+
+# hooks
+# ‾‾‾‾‾
+
+hook global BufCreate .*\.(html|blade\.php|twig) %{
+    set buffer formatcmd 'html-beautify -w 80 -I'
+    map buffer insert <c-y> '<esc><a-B>|node ~/Develop/kak/emmet-kak/emmet-cli.js<ret>'
+}
+
+hook global BufCreate .*(PKGBUILD|\.install) %{ set buffer filetype sh }
+
+hook global BufCreate .*\.(css|scss) %{
+    set buffer formatcmd 'css-beautify -N'
+}
+
+hook global WinCreate ^[^*]+$ %{
+    addhl number_lines -relative -hlcursor -separator ' '
+    addhl show_matching
+}
+
+hook global WinSetOption filetype=(c|cpp) %{
+    clang-enable-autocomplete
+}
+
+hook global BufCreate .*\.(json|js) %{
+    set buffer formatcmd 'js-beautify -a -j -B --good-stuff'
+}
+
+hook global BufCreate .*\.php %{
+    set buffer lintcmd "phpcs --report=emacs"
+    lint-enable
+}
+
+hook global BufCreate .*\.(md|asciidoc|adoc|txt|rst) %{
+    set buffer formatcmd 'par'
+}
+
+
+# alias
+# ‾‾‾‾‾
+
+alias global W write
+
+
+# mappings
+# ‾‾‾‾‾‾‾‾
+
+map global insert <backtab> '<a-;><lt>'
+map global insert <c-h>     '<backspace>'
+map global insert <c-w>     '<a-;>b<a-;>d'
+map global insert <tab>     '<a-;><gt>'
+map global normal <a-?>     '<a-?>(?i)'
+map global normal <a-/>     '<a-/>(?i)'
+map global normal '#'       :comment-line<ret>
+map global normal <c-p>     ':format<ret>'
+map global normal ?         '?(?i)'
+map global normal /         '/(?i)'
+map global user   b         :fzf-buffer<ret>
+map global user   g         ':gfind '
+map global user   h         :tmux-new-vertical<ret>
+map global user   n         ':new<ret>'
+map global user   O         :find<space>
+map global user   o         :fzf-file<ret>
+map global user   q         :waq<ret>
+map global user   S         ':set buffer filetype sh<ret>'
+map global user   s         :w<ret>
+map global user   t         :titletize-line<ret>
+map global user   T         'xypjghf<space>lGlr‾'
+map global user   v         :tmux-new-horizontal<ret>
+map global user   y         '$xclip -i -selection clipboard<ret>'
+
+
+# commands
+# ‾‾‾‾‾‾‾‾
+
+def -docstring 'Create a new horizontal split with tmux or X11 window as fallback' \
+    split %{
+        try %{
+            tmux-new-horizontal
+        } catch %{
+            x11-new
+        }
+    }
+
+def -docstring 'Create a new vertical split with tmux, or X11 as fallback' \
+    splitv %{
+        try %{ tmux-new-vertical } catch %{ x11-new }
+    }
+
+def -docstring 'invoke fzf to open a file' \
+    fzf-file %{ %sh{
+        if [ -z "$TMUX" ]; then
+            echo echo only works inside tmux
+        else
+            FILE=`fzf-tmux -d 15`
+            if [ -n "$FILE" ]; then
+                echo "eval -client '$kak_client' 'edit ${FILE}'" | kak -p ${kak_session}
+            fi
+        fi
+    }
+}
+
+def -docstring 'invoke fzf to select a buffer' \
+    fzf-buffer %{ %sh{
+        if [ -z "$TMUX" ]; then
+            echo echo only works inside tmux
+        else
+            BUFFER=`echo ${kak_buflist} | tr : '\n' | fzf-tmux -d 15`
+            if [ -n "$BUFFER" ]; then
+                echo "eval -client '$kak_client' 'buffer ${BUFFER}'" | kak -p ${kak_session}
+            fi
+        fi
+    }
+}
+
+def find  -params 1 -shell-candidates %{ find . -type f } %{ edit %arg{1} }
+def gfind -params 1 -shell-candidates %{ git ls-files   } %{ edit %arg{1} }
+
+def titletize-line -docstring 'Titletize the current line' %{exec -draft ''}
+
+def filetype -docstring 'echo out the `filetype` of the current buffer' %{ echo %opt{filetype} }
+
+
+# visual
+# ‾‾‾‾‾‾
+
+colorscheme yumh
