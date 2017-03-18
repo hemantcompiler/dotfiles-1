@@ -12,3 +12,4 @@ ln -sv `pwd`/i3gaps/ ~/.config/i3
 ln -sv `pwd`/xprofile ~/.xprofile
 ln -sv `pwd`/Xresources ~/.Xresources
 ln -sv `pwd`/redshift.conf ~/.config/redshift.conf
+ln -sv `pwd`/xmonad ~/.xmonad
