@@ -50,6 +50,5 @@ check [the dependencies list](dependencies.md)
 
 # TODO:
 
-- termite config
 - add some screenshots
 
