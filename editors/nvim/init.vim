@@ -384,4 +384,15 @@ augroup initvim
 
 " }}}
 
+" Scripts {{{
+
+" Remove Trailing Space {{{
+command! RemoveTrailingSpace call RTS()
+function! RTS()
+    execute '%s/\s\+$//'
+endfunction
+" }}}
+
+"}}}
+
 " vim:foldmethod=marker:foldlevel=0
