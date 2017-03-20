@@ -35,6 +35,7 @@ alias :q="exit"
 alias :e="v"
 
 alias _="sudo"
+alias __="sudo -E"
 
 alias grep="grep --color=always"
 
