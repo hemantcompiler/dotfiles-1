@@ -3,7 +3,12 @@ alias gst="git status"
 alias gwc="git whatchanged"
 alias gco="git checkout"
 alias gcob="git checkout -b"
-alias gpoat=""
+alias gpoat="git push origin --all --tag"
+alias gb="git branch"
+alias gl="git log"
+alias gd="git diff"
+alias gc="git commit"
+alias gca="git commit -a"
 
 # SYMFONY
 alias sf="php bin/console"
